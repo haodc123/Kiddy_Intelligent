@@ -140,8 +140,8 @@
 				<section id="g-by-cat-1" class="wrapper style2">
 					<div class="inner">
 						<header>
-							<h3>{{ trans('message.home.header_bycat') }}</h3>
-							<p>{{ trans('message.home.subheader_bycat1.1') }} <strong>{{ Config::get('constants.general.site_name_upper_1') }}</strong> {{ trans('message.home.subheader_bycat1.2') }}</p>
+							<h3>{{ trans('message.home.header_under4') }}</h3>
+							<p>{{ trans('message.home.subheader_under4') }}</p>
 						</header>
 						<!-- Tabbed Video Section -->
 							<div class="flex flex-tabs">
@@ -188,8 +188,8 @@
 				<section id="g-by-cat-2" class="wrapper style2">
 					<div class="inner">
 						<header>
-							<h3>{{ trans('message.home.header_bycat') }}</h3>
-							<p>{{ trans('message.home.subheader_bycat2.1') }} <strong>{{ Config::get('constants.general.site_name_upper_1') }}</strong> {{ trans('message.home.subheader_bycat2.2') }}</p>
+							<h3>{{ trans('message.home.header_above4') }}</h3>
+							<p>{{ trans('message.home.subheader_above4') }}</p>
 						</header>
 						<!-- Tabbed Video Section -->
 							<div class="flex flex-tabs">
