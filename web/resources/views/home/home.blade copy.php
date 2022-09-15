@@ -7,25 +7,56 @@
 						<header>
 							<h3 class="pc">{{ trans('message.title.1') }} <strong id="b_t">/  {{ Config::get('constants.general.site_name_upper_1') }}  /</strong></h3>
 							<h4 class="mobile">{{ trans('message.title.1') }}</h4>
-							<h3 class="mobile"><strong id="b_t"> {{ Config::get('constants.general.site_name_upper_1') }}  </strong></h3>
+							<h3 class="mobile"><strong id="b_t">/ {{ Config::get('constants.general.site_name_upper_1') }}  /</strong></h3>
 						</header>
 
 						<div class="flex flex-3 slideshow-container">
-						<div class="g-b-cat tab tab-1 flex flex-3 active">
 						@php
 							$g_special_num = sizeof($g_hot) < 8 ? sizeof($g_hot) : 8
 						@endphp
-						@if (sizeof($g_hot) > 0)
-							@for ($i = 0; $i < $g_special_num; $i++)
-								@component('components.box', [
-											'gc_by_id' => $gc_by_id, 
-											'gi' => $g_hot[$i],
-											'role' => 0
-										])
-									@endcomponent
-							@endfor
-						@endif
-						</div>
+						@for ($i = 0; $i < $g_special_num; $i++)
+							@if ($i%4 == 0)
+							<div class="mySlides fade">
+								<div class="video col">
+									<div class="image fit">
+										<img src="../images/thumb/{{ getPathThumb($g_hot[$i]->g_site, $g_hot[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}" />
+									</div>
+									<p class="caption">
+										<span class="title">{{ $g_hot[$i]->g_title }} </span>
+										<span class="small"><br />By: {{ $g_hot[$i]->g_author }}</span>
+										<span class="small"><br />⯈ <a href="cat/{{ $gc_by_id[$g_hot[$i]->g_cat_1][1] }}">{{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}</a></span>
+									</p>
+									<a href="game/{{ $g_hot[$i]->g_title_slug }}" class="link"><span>{{ $g_hot[$i]->g_title }}</span></a>
+								</div>
+							@elseif (($i+1)%4 == 0)
+								<div class="video col">
+									<div class="image fit">
+										<img src="../images/thumb/{{ getPathThumb($g_hot[$i]->g_site, $g_hot[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}" />
+									</div>
+									<p class="caption">
+										<span class="title">{{ $g_hot[$i]->g_title }} </span>
+										<span class="small"><br />By: {{ $g_hot[$i]->g_author }}</span>
+										<span class="small"><br />⯈ <a href="cat/{{ $gc_by_id[$g_hot[$i]->g_cat_1][1] }}">{{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}</a></span>
+									</p>
+									<a href="game/{{ $g_hot[$i]->g_title_slug }}" class="link"><span>{{ $g_hot[$i]->g_title }}</span></a>
+								</div>
+							</div>
+							@else
+								<div class="video col">
+									<div class="image fit">
+										<img src="../images/thumb/{{ getPathThumb($g_hot[$i]->g_site, $g_hot[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}" />
+									</div>
+									<p class="caption">
+										<span class="title">{{ $g_hot[$i]->g_title }}</span>
+										<span class="small"><br />By: {{ $g_hot[$i]->g_author }}</span>
+										<span class="small"><br />⯈ <a href="cat/{{ $gc_by_id[$g_hot[$i]->g_cat_1][1] }}">{{ $gc_by_id[$g_hot[$i]->g_cat_1][0] }}</a></span>
+									</p>
+									<a href="game/{{ $g_hot[$i]->g_title_slug }}" class="link"><span>{{ $g_hot[$i]->g_title }}</span></a>
+								</div>
+							@endif
+						@endfor
+							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  							<a class="next" onclick="plusSlides(1)">&#10095;</a>
 						</div>
 					</div>
 
@@ -50,25 +81,25 @@
 						</header>
 						
 						<div class="slideshow-container flex flex-3">
-							
-							<div class="g-b-cat tab tab-1 flex flex-3 active">
-								@for ($i = 8; $i < sizeof($g_hot); $i++)
+							<div class="mySlides3 fade">
+							@for ($i = 8; $i < sizeof($g_hot); $i++)
+								<div class="mySlides2 flex flex-3">
 									@component('components.box', [
 											'gc_by_id' => $gc_by_id, 
 											'gi' => $g_hot[$i],
 											'role' => 0
 										])
 									@endcomponent
-								@endfor
+								</div>
+							@endfor
 							</div>
-
 						</div>
 						
 					</div>
 					<div class="clear"></div>
 				</section>
 
-				<!-- <section id="cloud-cat" class="wrapper">
+				<section id="cloud-cat" class="wrapper">
 				<div class="cloud-cat inner">
 						<ul class="tab-list">
 						@foreach ($gc_by_id as $gc_by_id_i)
@@ -78,7 +109,7 @@
 						@endforeach
 						</ul>
 				</div>
-				</section> -->
+				</section>
 
 				<section id="new" class="wrapper ">
 					<div class="inner">
@@ -87,19 +118,21 @@
 							<p>{{ trans('message.home.subheader_new') }}</p>
 						</header>
 
-						<div class="slideshow-container flex flex-3">
-							<div class="g-b-cat tab tab-1 flex flex-3 active">
+						<div class="flex flex-3 slideshow-container">
+							<div class="mySlides3 fade">
 							@for ($i = 0; $i < sizeof($g_new); $i++)
+								<div class="mySlides2 flex flex-3">
 									@component('components.box', [
 											'gc_by_id' => $gc_by_id, 
 											'gi' => $g_new[$i],
 											'role' => 0
 										])
 									@endcomponent
+								</div>
 							@endfor
 							</div>
+							
 						</div>
-
 					</div>
 					<div class="clear"></div>
 				</section>
@@ -124,19 +157,19 @@
 
 									<!-- Tab 1 -->
 										<div class="g-b-cat tab tab-1 flex flex-3 active">
-									@if (sizeof($gbc_u4) > 0)
-										@for ($i = 0; $i < sizeof($gbc_u4); $i++)
+									@if (sizeof($gbc_1) > 0)
+										@for ($i = 0; $i < sizeof($gbc_1); $i++)
 											<div class="video col">
 												<div class="image fit">
-													<img src="../images/thumb/{{ getPathThumb($gbc_u4[$i]->g_site, $gbc_u4[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_u4[$i]->g_cat_1][0] }}" />
+													<img src="../images/thumb/{{ getPathThumb($gbc_1[$i]->g_site, $gbc_1[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_1[$i]->g_cat_1][0] }}" />
 												</div>
 												<p class="caption">
-													<span class="title">{{ $gbc_u4[$i]->g_title }}</span>
+													<span class="title">{{ $gbc_1[$i]->g_title }}</span>
 												</p>
-												<a href="game/{{ $gbc_u4[$i]->g_title_slug }}" class="link"><span>{{ $gbc_u4[$i]->g_title }}</span></a>
+												<a href="game/{{ $gbc_1[$i]->g_title_slug }}" class="link"><span>{{ $gbc_1[$i]->g_title }}</span></a>
 											</div>
 										@endfor
-										<a href="cat/{{ $gc_by_id[$gbc_u4[0]->g_cat_1][1] }}" class="link-more">See more</a>
+										<a href="cat/{{ $gc_by_id[$gbc_1[0]->g_cat_1][1] }}" class="link-more">See more</a>
 									@endif
 										</div>
 
@@ -164,19 +197,19 @@
 								<div class="tabs">
 									<!-- Tab 1 -->
 										<div class="g-b-cat tab tab-1 flex flex-3 active">
-									@if (sizeof($gbc_a4) > 0)
-										@for ($i = 0; $i < sizeof($gbc_a4); $i++)
+									@if (sizeof($gbc_2) > 0)
+										@for ($i = 0; $i < sizeof($gbc_2); $i++)
 											<div class="video col">
 												<div class="image fit">
-													<img src="../images/thumb/{{ getPathThumb($gbc_a4[$i]->g_site, $gbc_a4[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_a4[$i]->g_cat_1][0] }}" />
+													<img src="../images/thumb/{{ getPathThumb($gbc_2[$i]->g_site, $gbc_2[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_2[$i]->g_cat_1][0] }}" />
 												</div>
 												<p class="caption">
-													<span class="title">{{ $gbc_a4[$i]->g_title }}</span>
+													<span class="title">{{ $gbc_2[$i]->g_title }}</span>
 												</p>
-												<a href="game/{{ $gbc_a4[$i]->g_title_slug }}" class="link"><span>{{ $gbc_a4[$i]->g_title }}</span></a>
+												<a href="game/{{ $gbc_2[$i]->g_title_slug }}" class="link"><span>{{ $gbc_2[$i]->g_title }}</span></a>
 											</div>
 										@endfor
-										<a href="cat/{{ $gc_by_id[$gbc_a4[0]->g_cat_1][1] }}" class="link-more">See more</a>
+										<a href="cat/{{ $gc_by_id[$gbc_2[0]->g_cat_1][1] }}" class="link-more">See more</a>
 									@endif
 										</div>
 

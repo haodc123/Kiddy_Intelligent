@@ -1606,9 +1606,6 @@
 
 	}
 
-	body {
-		background: #020B13;
-	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 			-moz-animation: none !important;
@@ -1624,7 +1621,6 @@
 /* Type */
 
 	body {
-		background-color: #020B13;
 		color: #c0c2c4;
 	}
 

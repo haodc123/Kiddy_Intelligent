@@ -7,11 +7,9 @@
 	@endif
 	<p class="caption">
 		<span class="title">{{ $gi->g_title }}</span>
-	@if ($gi->g_author != '')
-		<span class="small"><br />By: {{ $gi->g_author }}</span>
-	@endif
-	@if (!isset($cat))
-		<span class="small"><br />⯈ <a href="cat/{{ $gc_by_id[$gi->g_cat_1][1] }}">{{ $gc_by_id[$gi->g_cat_1][0] }}</a></span>
+	
+	@if (!isset($cat) && $gi->g_cat_t != '')
+		<span class="small"><br />⯈ <a href="cat/{{ slugifyUnicode($gi->g_cat_t) }}">{{ $gi->g_cat_t }}</a></span>
 	@endif
 	</p>
 	

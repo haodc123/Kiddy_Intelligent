@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\GameCats;
+use App\GameCatT;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,24 +14,25 @@ class HomeController extends Controller
 
         $g = new Game();
         $gc = new GameCats();
+        $gt = new GameCatT();
         $g_new = $g->getNewGames(24);
-        $g_hot = $g->getHotGames(48); // 8 Special
+        $g_hot = $g->getHotnSpecialGame(48); // 8 Special
 
-        $gc_all = $gc->getArrayCatRichInfo();
-        $gc_by_id = $gc_all[0];
-        $arr_tags = $gc_all[1];
+        $gt_all = $gt->getArrayCatTRichInfo();
+        $gc_by_id = $gt_all[0];
+        $arr_tags = $gt->getAllCatT();
 
-        $gbc_1 = $g->getGamesByCatID(11, 18); // Driving
-        $gbc_2 = $g->getGamesByCatID(14, 18); // Action
+        $gbc_u4 = $g->getGamesByCatYO(66, 18); // Under 4
+        $gbc_a4 = $g->getGamesByCatYO(67, 18); // Above 4
 
         // print_r($gc_by_id);
         return view('home.home', [
             'g_new' => $g_new,
             'g_hot' => $g_hot,
-            'gbc_1' => $gbc_1,
-            'gbc_2' => $gbc_2,
+            'gbc_u4' => $gbc_u4,
+            'gbc_a4' => $gbc_a4,
             'gc_by_id' => $gc_by_id,
-            'arr_tags' => array_unique($arr_tags)
+            'arr_tags' => $arr_tags
         ]);
     }
 
