@@ -6,7 +6,7 @@
 		{!! showVoteStar2($gi->g_vote, $gi->g_vote_time, $gi->g_play_time) !!}
 	@endif
 	<p class="caption">
-		<span class="title">{{ $gi->g_title }}</span>
+		<span class="title">{{ shortenStr($gi->g_title) }}</span>
 	
 	@if (!isset($cat))
 		<span class="small"><br />⯈ {!! showCat($gi->g_cat_1, $gi->g_cat_t) !!}</span>

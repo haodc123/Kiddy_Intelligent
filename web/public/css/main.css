@@ -2841,7 +2841,7 @@
 
 		.wrapper .inner {
 			margin: 0 auto;
-			width: 80em;
+			width: 90%;
 			position: relative;
 			z-index: 99;
 		}
@@ -3962,15 +3962,19 @@
 		float: left;
 		display: inline;
 		margin-right: 15px;
+		color: #319DA0 !important;
 	}
 	.wrap_search ul li input {
 		width: 240px;
+		border: solid 1px #319DA0 !important;
+		background-color: #eeeeee !important;
 		/* width: 100%; */
 		/* max-width: 140px; */
 	}
 	.wrap_search ul li button {
 		width: 80px;
 		text-align: center;
+		background-color: #cccccc !important;
 	}
 	
 	/* End search */
@@ -3978,9 +3982,12 @@
 
 	/* Game by cat */
 	.g-b-cat .col {
-		width: 19% !important;
+		width: 17% !important;
 		float: left;
-		margin: 0 22px 30px 22px;
+		border: solid 1px #319DA0;
+		margin: 0 18px 24px 18px;
+		padding: 8px;
+		background-color: #ffffff66;
 	}
 	#g-by-cat-2 header {
 		text-align: right;

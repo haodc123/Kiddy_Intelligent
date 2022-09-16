@@ -10,40 +10,122 @@
 							<h3 class="mobile"><strong id="b_t"> {{ Config::get('constants.general.site_name_upper_1') }}  </strong></h3>
 						</header>
 
-						<div class="flex flex-3 slideshow-container">
-						<div class="g-b-cat tab tab-1 flex flex-3 active">
-						@php
-							$g_special_num = sizeof($g_hot) < 8 ? sizeof($g_hot) : 8
-						@endphp
-						@if (sizeof($g_hot) > 0)
-							@for ($i = 0; $i < $g_special_num; $i++)
-								@component('components.box', [
-											'gc_by_id' => $gc_by_id, 
-											'gi' => $g_hot[$i],
-											'role' => 0
-										])
-									@endcomponent
-							@endfor
-						@endif
-						</div>
-						</div>
+						
 					</div>
 
 				</section>
 			
 			<!-- Main -->
 			<div id="main">
-					<section id="hot" class="wrapper ">
-					<div class="inner">
-						<div class="wrap_search">
-							<form method="post" action="{{ route('search')}}">
-								{{csrf_field()}}
-								<ul>
-									<li><input placeholder="{{ trans('message.search.placeholder') }}" type="text" name="search_data" /></li>
-									<li><button type="submit" name="search_btn">{{ trans('message.search.button') }}</button></li>
-								</ul>
-							</form>
+
+			<section id="g-by-cat-2" class="wrapper style2">
+				<div class="inner">
+					<div class="wrap_search">
+						<form method="post" action="{{ route('search')}}">
+							{{csrf_field()}}
+							<ul>
+								<li><input placeholder="{{ trans('message.search.placeholder') }}" type="text" name="search_data" /></li>
+								<li><button type="submit" name="search_btn">{{ trans('message.search.button') }}</button></li>
+							</ul>
+						</form>
+					</div>
+
+					<header>
+						<h3>{{ trans('message.home.header_aboveA') }}{{ Config::get('constants.general.step_year_old_A') }}</h3>
+						<p>{{ trans('message.home.subheader_aboveA') }}{{ Config::get('constants.general.step_year_old_A') }}</p>
+					</header>
+					<!-- Tabbed Video Section -->
+						<div class="flex flex-tabs">
+							
+							<div class="tabs">
+								<!-- Tab 1 -->
+									<div class="g-b-cat tab tab-1 flex flex-3 active">
+								@if (sizeof($gbc_aA) > 0)
+									@for ($i = 0; $i < sizeof($gbc_aA); $i++)
+										<div class="video col">
+											<div class="image fit">
+												<img src="../images/thumb/{{ getPathThumb($gbc_aA[$i]->g_site, $gbc_aA[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_aA[$i]->g_cat_1][0] }}" />
+											</div>
+											<p class="caption">
+												<span class="title">{{ shortenStr($gbc_aA[$i]->g_title) }}</span>
+											</p>
+											<a href="game/{{ $gbc_aA[$i]->g_title_slug }}" class="link"><span>{{ $gbc_aA[$i]->g_title }}</span></a>
+										</div>
+									@endfor
+									<a href="cat/{{ $gc_by_id[$gbc_aA[0]->g_cat_1][1] }}" class="link-more">See more</a>
+								@endif
+									</div>
+
+							@foreach ($gc_by_id as $key=>$gc_by_id_i)
+								@if ($gc_by_id_i[2] == 22)
+									<div class="g-b-cat tab tab-{{ $key }} flex flex-3"></div>
+								@endif
+							@endforeach
+
+							</div>
+
+							<ul class="tab-list">
+							@foreach ($gc_by_id as $key=>$gc_by_id_i)
+								@if ($gc_by_id_i[2] == 22)
+									<li class="home"><a href="#" data-id="{{ $key }}" data-tab="tab-{{ $key }}">{{ $gc_by_id_i[0] }}</a></li>
+								@endif
+							@endforeach
+								<li class="more"><a href="cat/">>>&nbsp; {{ trans('message.all_cat') }}</a></li>
+							</ul>
 						</div>
+					</div>
+				</section>
+
+			<section id="g-by-cat-1" class="wrapper style2">
+				<div class="inner">
+					<header>
+						<h3>{{ trans('message.home.header_underA') }}{{ Config::get('constants.general.step_year_old_A') }}</h3>
+						<p>{{ trans('message.home.subheader_underA') }}{{ Config::get('constants.general.step_year_old_A') }}</p>
+					</header>
+					<!-- Tabbed Video Section -->
+						<div class="flex flex-tabs">
+							<ul class="tab-list">
+							@foreach ($gc_by_id as $key=>$gc_by_id_i)
+								@if ($gc_by_id_i[2] == 11)
+									<li class="home"><a href="#" data-id="{{ $key }}" data-tab="tab-{{ $key }}">{{ $gc_by_id_i[0] }}</a></li>
+								@endif
+							@endforeach
+								<li class="more"><a href="cat/">>>&nbsp; {{ trans('message.all_cat') }}</a></li>
+							</ul>
+							<div class="tabs">
+
+								<!-- Tab 1 -->
+									<div class="g-b-cat tab tab-1 flex flex-3 active">
+								@if (sizeof($gbc_uA) > 0)
+									@for ($i = 0; $i < sizeof($gbc_uA); $i++)
+										<div class="video col">
+											<div class="image fit">
+												<img src="../images/thumb/{{ getPathThumb($gbc_uA[$i]->g_site, $gbc_uA[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_uA[$i]->g_cat_1][0] }}" />
+											</div>
+											<p class="caption">
+												<span class="title">{{ shortenStr($gbc_uA[$i]->g_title) }}</span>
+											</p>
+											<a href="game/{{ $gbc_uA[$i]->g_title_slug }}" class="link"><span>{{ $gbc_uA[$i]->g_title }}</span></a>
+										</div>
+									@endfor
+									<a href="cat/{{ $gc_by_id[$gbc_uA[0]->g_cat_1][1] }}" class="link-more">See more</a>
+								@endif
+									</div>
+
+								@foreach ($gc_by_id as $key=>$gc_by_id_i)
+									@if ($gc_by_id_i[2] == 11)
+										<div class="g-b-cat tab tab-{{ $key }} flex flex-3"></div>
+									@endif
+								@endforeach
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="hot" class="wrapper ">
+					<div class="inner">
+						
 						<header id="hot" class="align-center">
 							<h3>{{ trans('message.home.header_hot') }}</h3>
 							<p>{{ trans('message.home.subheader_hot') }}</p>
@@ -104,101 +186,7 @@
 					<div class="clear"></div>
 				</section>
 
-				<section id="g-by-cat-1" class="wrapper style2">
-					<div class="inner">
-						<header>
-							<h3>{{ trans('message.home.header_under4') }}</h3>
-							<p>{{ trans('message.home.subheader_under4') }}</p>
-						</header>
-						<!-- Tabbed Video Section -->
-							<div class="flex flex-tabs">
-								<ul class="tab-list">
-								@foreach ($gc_by_id as $key=>$gc_by_id_i)
-									@if ($gc_by_id_i[2] == 11)
-										<li class="home"><a href="#" data-id="{{ $key }}" data-tab="tab-{{ $key }}">{{ $gc_by_id_i[0] }}</a></li>
-									@endif
-								@endforeach
-									<li class="more"><a href="cat/">>>&nbsp; {{ trans('message.all_cat') }}</a></li>
-								</ul>
-								<div class="tabs">
-
-									<!-- Tab 1 -->
-										<div class="g-b-cat tab tab-1 flex flex-3 active">
-									@if (sizeof($gbc_u4) > 0)
-										@for ($i = 0; $i < sizeof($gbc_u4); $i++)
-											<div class="video col">
-												<div class="image fit">
-													<img src="../images/thumb/{{ getPathThumb($gbc_u4[$i]->g_site, $gbc_u4[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_u4[$i]->g_cat_1][0] }}" />
-												</div>
-												<p class="caption">
-													<span class="title">{{ $gbc_u4[$i]->g_title }}</span>
-												</p>
-												<a href="game/{{ $gbc_u4[$i]->g_title_slug }}" class="link"><span>{{ $gbc_u4[$i]->g_title }}</span></a>
-											</div>
-										@endfor
-										<a href="cat/{{ $gc_by_id[$gbc_u4[0]->g_cat_1][1] }}" class="link-more">See more</a>
-									@endif
-										</div>
-
-									@foreach ($gc_by_id as $key=>$gc_by_id_i)
-										@if ($gc_by_id_i[2] == 11)
-											<div class="g-b-cat tab tab-{{ $key }} flex flex-3"></div>
-										@endif
-									@endforeach
-
-								</div>
-							</div>
-					</div>
-				</section>
-
-
-				<section id="g-by-cat-2" class="wrapper style2">
-					<div class="inner">
-						<header>
-							<h3>{{ trans('message.home.header_above4') }}</h3>
-							<p>{{ trans('message.home.subheader_above4') }}</p>
-						</header>
-						<!-- Tabbed Video Section -->
-							<div class="flex flex-tabs">
-								
-								<div class="tabs">
-									<!-- Tab 1 -->
-										<div class="g-b-cat tab tab-1 flex flex-3 active">
-									@if (sizeof($gbc_a4) > 0)
-										@for ($i = 0; $i < sizeof($gbc_a4); $i++)
-											<div class="video col">
-												<div class="image fit">
-													<img src="../images/thumb/{{ getPathThumb($gbc_a4[$i]->g_site, $gbc_a4[$i]->g_thumb) }}" onerror="this.onerror=null;this.src='../images/thumb/thumb_def.png';" alt="Game online {{ $gc_by_id[$gbc_a4[$i]->g_cat_1][0] }}" />
-												</div>
-												<p class="caption">
-													<span class="title">{{ $gbc_a4[$i]->g_title }}</span>
-												</p>
-												<a href="game/{{ $gbc_a4[$i]->g_title_slug }}" class="link"><span>{{ $gbc_a4[$i]->g_title }}</span></a>
-											</div>
-										@endfor
-										<a href="cat/{{ $gc_by_id[$gbc_a4[0]->g_cat_1][1] }}" class="link-more">See more</a>
-									@endif
-										</div>
-
-								@foreach ($gc_by_id as $key=>$gc_by_id_i)
-									@if ($gc_by_id_i[2] == 22)
-										<div class="g-b-cat tab tab-{{ $key }} flex flex-3"></div>
-									@endif
-								@endforeach
-
-								</div>
-
-								<ul class="tab-list">
-								@foreach ($gc_by_id as $key=>$gc_by_id_i)
-									@if ($gc_by_id_i[2] == 22)
-										<li class="home"><a href="#" data-id="{{ $key }}" data-tab="tab-{{ $key }}">{{ $gc_by_id_i[0] }}</a></li>
-									@endif
-								@endforeach
-									<li class="more"><a href="cat/">>>&nbsp; {{ trans('message.all_cat') }}</a></li>
-								</ul>
-							</div>
-					</div>
-				</section>
+				
 
 			</div>
 

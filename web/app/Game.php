@@ -20,6 +20,13 @@ class Game extends Model
     // const CREATED_AT = 'created_at';
     // const UPDATED_AT = 'updated_at';
 
+    protected $num_item_inblock = 0;
+
+    public function __construct()
+    {
+        $this->num_item_inblock = \Config::get('constants.general.number_game_in_block');
+    }
+
     public function getAllGames() {
         return self::all();
     }
@@ -35,7 +42,7 @@ class Game extends Model
         }
         return self::orderBy('id', 'desc')->take($n)->get();
     }
-    public function getHotnSpecialGame($n) {
+    public function getHotnSpecialGames($n) {
         if (isMobile()) {
             return self::whereIn('g_hot', array(1,2))
                     ->where('g_not_mobi', 0)
@@ -69,7 +76,7 @@ class Game extends Model
                     ->take($n)->get();
     }
 
-    public function getGamesByCatID($cat, $n=60) {
+    public function getGamesByCatID($cat, $n=self::num_item_inblock) {
         if (isMobile()) {
             return self::where(function($query) use ($cat)
                     {
@@ -83,16 +90,21 @@ class Game extends Model
                     ->orWhere('g_cat_2', $cat)
                     ->take($n)->get();
     }
-    public function getGamesByCatYO($cat, $n=60) {
+    public function getGamesByCatYO($age, $compare, $n=self::num_item_inblock) {
         if (isMobile()) {
-            return self::whereIn('g_cat_yo', array($cat, 0))
+            return self::where(function($query) use ($compare)
+                    {
+                        $query->where('g_cat_yo', 0);
+                        $query->orWhere('g_cat_yo', $compare, \Config::get('constants.general.step_year_old_A'));
+                    })
                     ->where('g_not_mobi', 0)
                     ->take($n)->get();
         }
-        return self::whereIn('g_cat_yo', array($cat, 0))
+        return self::where('g_cat_yo', 0)
+                    ->orWhere('g_cat_yo', $compare, \Config::get('constants.general.step_year_old_A'))
                     ->take($n)->get();
     }
-    public function getGamesByCatT($catT, $n=60) {
+    public function getGamesByCatT($catT, $n=self::num_item_inblock) {
         if (isMobile()) {
             return self::where('g_cat_t', $catT)
                     ->where('g_not_mobi', 0)
@@ -101,7 +113,7 @@ class Game extends Model
         return self::where('g_cat_t', '=', $catT)
                     ->take($n)->get();
     }
-    public function getGamesByCatIDs($arr_cat, $n=60) {
+    public function getGamesByCatIDs($arr_cat, $n=self::num_item_inblock) {
         foreach ($arr_cat as $key => $value) {
             $f = explode(",", $value);
         }
