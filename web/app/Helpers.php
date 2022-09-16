@@ -113,5 +113,25 @@ function slugifyUnicode($title) {
 	return strtolower(preg_replace(array_keys($map), array_values($map), $title));
 }
 
+function showCat($cat1, $catt, $cat2 = 0, $catyo = 0) {
+	if ($catt != '')
+		return '<a href="cat/'.slugifyUnicode($catt).'">'.$catt.'</a>';
+	else {
+		switch ($cat1) {
+			case 28:
+				$cat_name = 'Puzzle';
+				$cat_slug = 'Puzzle';
+				break;
+			case 65:
+				$cat_name = 'Board game';
+				$cat_slug = 'Board-game';
+			  break;
+			default:
+				$cat_name = 'Puzzle';
+				$cat_slug = 'Puzzle';
+		}
+		return '<a href="cat/'.$cat_slug.'">'.$cat_name.'</a>';
+	}
+}
 
 ?>

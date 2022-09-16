@@ -8,8 +8,8 @@
 	<p class="caption">
 		<span class="title">{{ $gi->g_title }}</span>
 	
-	@if (!isset($cat) && $gi->g_cat_t != '')
-		<span class="small"><br />⯈ <a href="cat/{{ slugifyUnicode($gi->g_cat_t) }}">{{ $gi->g_cat_t }}</a></span>
+	@if (!isset($cat))
+		<span class="small"><br />⯈ {!! showCat($gi->g_cat_1, $gi->g_cat_t) !!}</span>
 	@endif
 	</p>
 	
