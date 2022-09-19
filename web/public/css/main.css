@@ -2701,7 +2701,7 @@
 		ul.tab-list li a {
 			background: rgba(255, 255, 255, 0.075);
 			border-radius: 4px;
-			color: rgba(255, 255, 255, 0.5) !important;
+			color: #319DA0 !important;
 			margin-bottom: .5em;
 			padding: .5em 1em;
 			display: inline-block;
@@ -2710,12 +2710,12 @@
 
 			ul.tab-list li a.active {
 				background: #aa14cc;
-				color: #fff !important;
+				color: #319DA0 !important;
 			}
 
 			ul.tab-list li a:hover {
 				background: #693dcc;
-				color: #fff !important;
+				color: #319D90 !important;
 			}
 
 	.tab {
@@ -3374,7 +3374,7 @@
 			color: #c0c5c9;
 			padding: 1em;
 			padding-top: 0.2em;
-			padding-bottom: 0.7em;
+			padding-bottom: 0;
 			padding-left: 0.7em;
 			font-size: 1.15em;
 			font-weight: 300;
@@ -3932,7 +3932,9 @@
 
 	/* New */
 	#new .slideshow-container, #hot .slideshow-container {
-		max-width: 100%;
+		/* max-width: 100%; */
+		width: auto !important;
+		margin: auto !important;
 	}
 	#new .mySlides3 .video.col, #hot .mySlides2 .video.col {
 		float: left;
@@ -3981,8 +3983,9 @@
 
 
 	/* Game by cat */
+	
 	.g-b-cat .col {
-		width: 17% !important;
+		width: 19% !important;
 		float: left;
 		border: solid 1px #319DA0;
 		margin: 0 18px 24px 18px;
@@ -4037,6 +4040,7 @@
 	padding: 0.5em !important;
 	padding-top: 5px !important;
 	padding-left: 0.4em !important;
+	padding-bottom: 0 !important;
 }
 /* End Tab List */
 
@@ -4155,6 +4159,14 @@ ul.manage_game li {
 } */
 /* End box */
 
+.slideshow-container {
+	width: auto !important;
+	margin: auto !important;
+}
+.g-b-cat {
+	width: auto !important;
+}
+
 /* Footer */
 span.kw {
 	font-size: 1px;
@@ -4163,6 +4175,8 @@ span.kw {
 }
 	#footer {
 		padding: 1.2em 0 1em 0;
+		background-color: #319DA0;
+		color: #fff !important;
 	}
 
 		#footer > .inner {
@@ -4171,7 +4185,6 @@ span.kw {
 		}
 
 		#footer .copyright {
-			color: #676d71;
 			font-size: 0.9em;
 			margin: 0 0 2em 0;
 			padding: 0;
